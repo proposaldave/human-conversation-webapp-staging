@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Human Conversation">
-  <rect width="512" height="512" rx="96" fill="#fff6d9"/>
-  <path d="M112 140h288v188H266l-76 58v-58h-78z" fill="#171714"/>
-  <circle cx="202" cy="234" r="24" fill="#d4a72c"/>
-  <circle cx="310" cy="234" r="24" fill="#2367d1"/>
-</svg>

@@ -1,18 +1,23 @@
 {
-  "name": "Human Conversation Mobile Operator",
+  "name": "Human Conversation",
   "short_name": "Human Conversation",
-  "description": "Record a lesson with consent, preserve the moments that mattered, and prepare a human recap.",
-  "start_url": "./?mode=mobile",
+  "description": "A generated-data-only working demo of Human Conversation.",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f6f7f4",
-  "theme_color": "#111513",
-  "orientation": "portrait-primary",
+  "background_color": "#f4f1eb",
+  "theme_color": "#1a1612",
   "icons": [
     {
-      "src": "./icons/human-conversation-mark.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]
