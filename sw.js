@@ -1,10 +1,11 @@
 const CACHE_PREFIX = "human-conversation-public-staging-";
-const CACHE_NAME = CACHE_PREFIX + "34332635e8af1fb5";
+const CACHE_NAME = CACHE_PREFIX + "f4d12f4dbf7edc70";
 const LEGACY_CACHE_NAMES = ["human-conversation-public-indexhtmlmanifestwebmanifest"];
 const APP_SHELL = [
   "./README.md",
-  "./assets/index-DqahY_Sn.css",
-  "./assets/index.staging-CZhuh-oJ.js",
+  "./assets/baby-block-demo-moment-CD82chgW.wav",
+  "./assets/index-BJ_1iVkg.css",
+  "./assets/index.staging-s9zMxO0W.js",
   "./icons/apple-touch-icon.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
