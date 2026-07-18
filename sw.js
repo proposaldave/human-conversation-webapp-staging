@@ -1,7 +1,8 @@
 const CACHE_PREFIX = "human-conversation-public-staging-";
-const CACHE_NAME = CACHE_PREFIX + "fc3254ef2cb52e17";
+const CACHE_NAME = CACHE_PREFIX + "60901b28ab351f88";
 const LEGACY_CACHE_NAMES = ["human-conversation-public-indexhtmlmanifestwebmanifest"];
 const APP_SHELL = [
+  "./.nojekyll",
   "./README.md",
   "./assets/baby-block-demo-moment-CD82chgW.wav",
   "./assets/main-BBQH62NM.js",
