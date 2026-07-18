@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "human-conversation-public-staging-";
-const CACHE_NAME = CACHE_PREFIX + "60901b28ab351f88";
+const CACHE_NAME = CACHE_PREFIX + "6a84386a98093092";
 const LEGACY_CACHE_NAMES = ["human-conversation-public-indexhtmlmanifestwebmanifest"];
 const APP_SHELL = [
   "./.nojekyll",
@@ -7,8 +7,8 @@ const APP_SHELL = [
   "./assets/baby-block-demo-moment-CD82chgW.wav",
   "./assets/main-BBQH62NM.js",
   "./assets/main-BJ_1iVkg.css",
-  "./assets/operator-BKURmX4o.css",
-  "./assets/operator-D0zaMjBL.js",
+  "./assets/operator-Dp_NdNhU.css",
+  "./assets/operator-sEGWRcHE.js",
   "./assets/sparkles-DOGtB4Dq.js",
   "./icons/apple-touch-icon.png",
   "./icons/icon-192.png",
