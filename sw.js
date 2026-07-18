@@ -1,16 +1,20 @@
 const CACHE_PREFIX = "human-conversation-public-staging-";
-const CACHE_NAME = CACHE_PREFIX + "f4d12f4dbf7edc70";
+const CACHE_NAME = CACHE_PREFIX + "fc3254ef2cb52e17";
 const LEGACY_CACHE_NAMES = ["human-conversation-public-indexhtmlmanifestwebmanifest"];
 const APP_SHELL = [
   "./README.md",
   "./assets/baby-block-demo-moment-CD82chgW.wav",
-  "./assets/index-BJ_1iVkg.css",
-  "./assets/index.staging-s9zMxO0W.js",
+  "./assets/main-BBQH62NM.js",
+  "./assets/main-BJ_1iVkg.css",
+  "./assets/operator-BKURmX4o.css",
+  "./assets/operator-D0zaMjBL.js",
+  "./assets/sparkles-DOGtB4Dq.js",
   "./icons/apple-touch-icon.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./index.html",
-  "./manifest.webmanifest"
+  "./manifest.webmanifest",
+  "./operator.html"
 ];
 
 self.addEventListener("install", (event) => {
@@ -35,10 +39,11 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin) return;
 
   if (event.request.mode === "navigate") {
+    const fallbackPath = url.pathname.endsWith("/operator.html") ? "./operator.html" : "./index.html";
     event.respondWith(fetch(event.request).then((response) => {
-      if (response.ok) caches.open(CACHE_NAME).then((cache) => cache.put("./index.html", response.clone()));
+      if (response.ok) caches.open(CACHE_NAME).then((cache) => cache.put(fallbackPath, response.clone()));
       return response;
-    }).catch(() => caches.open(CACHE_NAME).then((cache) => cache.match("./index.html"))));
+    }).catch(() => caches.open(CACHE_NAME).then((cache) => cache.match(fallbackPath))));
     return;
   }
 

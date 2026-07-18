@@ -20,5 +20,20 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Private operator",
+      "short_name": "Operator",
+      "description": "Open the local-only Human Conversation operator workspace.",
+      "url": "./operator.html",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
   ]
 }
