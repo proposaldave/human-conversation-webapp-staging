@@ -1,15 +1,21 @@
 const CACHE_PREFIX = "human-conversation-public-staging-";
-const CACHE_NAME = CACHE_PREFIX + "e9337776ebd0f6ff";
+const CACHE_NAME = CACHE_PREFIX + "57e5cbb788920522";
 const LEGACY_CACHE_NAMES = ["human-conversation-public-indexhtmlmanifestwebmanifest"];
 const APP_SHELL = [
   "./.nojekyll",
   "./README.md",
   "./assets/baby-block-demo-moment-CD82chgW.wav",
+  "./assets/baby-block-demo-moment-DM348rXU.js",
+  "./assets/coach-DGZ-FQGr.css",
+  "./assets/coach-DcFMaybE.js",
   "./assets/main-BJ_1iVkg.css",
-  "./assets/main-DDD4DX4Y.js",
+  "./assets/main-Cr7fdx_0.js",
   "./assets/operator-BhCkEVus.css",
-  "./assets/operator-DPkiy7uw.js",
-  "./assets/sparkles-B8esmGDD.js",
+  "./assets/operator-zHL4hrMg.js",
+  "./assets/rotate-ccw-CWTBuy5h.js",
+  "./assets/sparkles-Cie4_JKj.js",
+  "./assets/users-round-DkgJWjmY.js",
+  "./coach.html",
   "./icons/apple-touch-icon.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
@@ -40,7 +46,11 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin) return;
 
   if (event.request.mode === "navigate") {
-    const fallbackPath = url.pathname.endsWith("/operator.html") ? "./operator.html" : "./index.html";
+    const fallbackPath = url.pathname.endsWith("/operator.html")
+      ? "./operator.html"
+      : url.pathname.endsWith("/coach.html")
+        ? "./coach.html"
+        : "./index.html";
     event.respondWith(fetch(event.request).then((response) => {
       if (response.ok) caches.open(CACHE_NAME).then((cache) => cache.put(fallbackPath, response.clone()));
       return response;

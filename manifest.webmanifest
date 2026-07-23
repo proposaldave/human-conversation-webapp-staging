@@ -34,6 +34,19 @@
           "type": "image/png"
         }
       ]
+    },
+    {
+      "name": "Coach workspace",
+      "short_name": "Coach",
+      "description": "Review sessions, player packages, and club-memory notes.",
+      "url": "./coach.html",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }
