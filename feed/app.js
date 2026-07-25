@@ -2,6 +2,9 @@ const DELETED_MOMENTS_KEY = "human-conversation-deleted-feed-moments";
 const outputByMoment = {
   "key-takeaway": "A lesson worth remembering.",
   "human-moment": "A moment worth sharing.",
+  "coaching-clicks": "A correction the player can replay.",
+  reinforcement: "Confidence the player can hear.",
+  "energy-lifts": "The energy of a successful rep.",
 };
 
 let posts = [];
@@ -200,7 +203,7 @@ dialog.addEventListener("click", (event) => {
   if (event.target === dialog) dialog.close();
 });
 
-const hashMatch = window.location.hash.match(/moment-(\d)/);
+const hashMatch = window.location.hash.match(/moment-(\d+)/);
 if (hashMatch) setCurrent(Number(hashMatch[1]) - 1, true);
 
 const observer = new IntersectionObserver((entries) => {

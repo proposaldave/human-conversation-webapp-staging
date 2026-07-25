@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "human-conversation-public-staging-";
-const CACHE_NAME = CACHE_PREFIX + "audio-feed-home-v3";
+const CACHE_NAME = CACHE_PREFIX + "audio-feed-home-v4";
 const LEGACY_CACHE_NAMES = ["human-conversation-public-indexhtmlmanifestwebmanifest"];
 const APP_SHELL = [
   "./.nojekyll",
@@ -19,8 +19,12 @@ const APP_SHELL = [
   "./feed/app.js",
   "./feed/assets/02-one-thing.mp3",
   "./feed/assets/03-human-moment.mp3",
+  "./feed/assets/04-coaching-clicks.mp3",
+  "./feed/assets/05-you-got-it.mp3",
+  "./feed/assets/06-energy-lifts.mp3",
   "./feed/assets/human-conversation-mark.png",
   "./feed/index.html",
+  "./feed/published-moments.json",
   "./feed/styles.css",
   "./icons/apple-touch-icon.png",
   "./icons/icon-192.png",

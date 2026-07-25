@@ -1,0 +1,37 @@
+[
+  {
+    "id": "key-takeaway",
+    "sourceSession": "covering-the-middle",
+    "asset": "02-one-thing.mp3",
+    "durationSeconds": 45,
+    "status": "published"
+  },
+  {
+    "id": "human-moment",
+    "sourceSession": "covering-the-middle",
+    "asset": "03-human-moment.mp3",
+    "durationSeconds": 27,
+    "status": "published"
+  },
+  {
+    "id": "coaching-clicks",
+    "sourceSession": "private-coaching-session",
+    "asset": "04-coaching-clicks.mp3",
+    "durationSeconds": 32,
+    "status": "published"
+  },
+  {
+    "id": "reinforcement",
+    "sourceSession": "private-coaching-session",
+    "asset": "05-you-got-it.mp3",
+    "durationSeconds": 55,
+    "status": "published"
+  },
+  {
+    "id": "energy-lifts",
+    "sourceSession": "private-coaching-session",
+    "asset": "06-energy-lifts.mp3",
+    "durationSeconds": 40,
+    "status": "published"
+  }
+]
