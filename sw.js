@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "human-conversation-public-staging-";
-const CACHE_NAME = CACHE_PREFIX + "57e5cbb788920522";
+const CACHE_NAME = CACHE_PREFIX + "audio-feed-home-v2";
 const LEGACY_CACHE_NAMES = ["human-conversation-public-indexhtmlmanifestwebmanifest"];
 const APP_SHELL = [
   "./.nojekyll",
@@ -16,6 +16,12 @@ const APP_SHELL = [
   "./assets/sparkles-Cie4_JKj.js",
   "./assets/users-round-DkgJWjmY.js",
   "./coach.html",
+  "./feed/app.js",
+  "./feed/assets/02-one-thing.mp3",
+  "./feed/assets/03-human-moment.mp3",
+  "./feed/assets/human-conversation-mark.png",
+  "./feed/index.html",
+  "./feed/styles.css",
   "./icons/apple-touch-icon.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
@@ -46,7 +52,9 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin) return;
 
   if (event.request.mode === "navigate") {
-    const fallbackPath = url.pathname.endsWith("/operator.html")
+    const fallbackPath = url.pathname.includes("/feed/")
+      ? "./feed/index.html"
+      : url.pathname.endsWith("/operator.html")
       ? "./operator.html"
       : url.pathname.endsWith("/coach.html")
         ? "./coach.html"

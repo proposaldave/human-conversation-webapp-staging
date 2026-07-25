@@ -1,22 +1,83 @@
-const posts = [...document.querySelectorAll(".feed-post")];
-const audios = posts.map((post) => post.querySelector("audio"));
+const DELETED_MOMENTS_KEY = "human-conversation-deleted-feed-moments";
+const outputByMoment = {
+  "key-takeaway": "A lesson worth remembering.",
+  "human-moment": "A moment worth sharing.",
+};
+
+let posts = [];
+let audios = [];
+let currentIndex = 0;
+let autoplayFeed = false;
 const storySteps = [...document.querySelectorAll(".story-steps li")];
 const outputText = document.querySelector("#outputText");
 const playFeedButton = document.querySelector("#playFeedButton");
 const nextMomentButton = document.querySelector("#nextMomentButton");
 const toast = document.querySelector("#toast");
-const outputs = [
-  "A reason to join the class.",
-  "A lesson worth remembering.",
-  "A moment worth sharing.",
-];
 
-let currentIndex = 0;
-let autoplayFeed = false;
+function getDeletedMoments() {
+  try {
+    return new Set(JSON.parse(localStorage.getItem(DELETED_MOMENTS_KEY) || "[]"));
+  } catch {
+    return new Set();
+  }
+}
+
+function saveDeletedMoments(deletedMoments) {
+  localStorage.setItem(DELETED_MOMENTS_KEY, JSON.stringify([...deletedMoments]));
+}
 
 function formatTime(seconds) {
   const safeSeconds = Number.isFinite(seconds) ? Math.max(0, Math.floor(seconds)) : 0;
   return `${Math.floor(safeSeconds / 60)}:${String(safeSeconds % 60).padStart(2, "0")}`;
+}
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("is-visible");
+  setTimeout(() => toast.classList.remove("is-visible"), 1600);
+}
+
+function syncPosts() {
+  posts = [...document.querySelectorAll(".feed-post:not([hidden])")];
+  audios = posts.map((post) => post.querySelector("audio"));
+  posts.forEach((post, index) => {
+    post.dataset.post = String(index);
+    post.querySelector(".post-number").textContent = String(index + 1).padStart(2, "0");
+  });
+  storySteps.forEach((step, index) => {
+    step.hidden = index >= posts.length;
+  });
+  currentIndex = Math.min(currentIndex, Math.max(0, posts.length - 1));
+}
+
+function setCurrent(index, shouldScroll = false) {
+  if (!posts.length) return;
+  currentIndex = (index + posts.length) % posts.length;
+  posts.forEach((post, postIndex) => post.classList.toggle("is-active", postIndex === currentIndex));
+  storySteps.forEach((step, stepIndex) => step.classList.toggle("is-current", stepIndex === currentIndex));
+  outputText.textContent = outputByMoment[posts[currentIndex].dataset.momentId];
+  if (shouldScroll) posts[currentIndex].scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function stopOthers(activeAudio) {
+  audios.forEach((audio, index) => {
+    if (audio !== activeAudio) {
+      audio.pause();
+      posts[index].classList.remove("is-playing");
+    }
+  });
+}
+
+function toggleAudio(index) {
+  if (!posts[index]) return;
+  setCurrent(index);
+  const audio = audios[index];
+  if (audio.paused) {
+    stopOthers(audio);
+    audio.play();
+  } else {
+    audio.pause();
+  }
 }
 
 function buildWaveform(post, postIndex) {
@@ -35,44 +96,17 @@ function buildWaveform(post, postIndex) {
   });
 }
 
-function setCurrent(index, shouldScroll = false) {
-  currentIndex = (index + posts.length) % posts.length;
-  posts.forEach((post, postIndex) => post.classList.toggle("is-active", postIndex === currentIndex));
-  storySteps.forEach((step, stepIndex) => step.classList.toggle("is-current", stepIndex === currentIndex));
-  outputText.textContent = outputs[currentIndex];
-  if (shouldScroll) posts[currentIndex].scrollIntoView({ behavior: "smooth", block: "center" });
-}
-
-function stopOthers(activeAudio) {
-  audios.forEach((audio, index) => {
-    if (audio !== activeAudio) {
-      audio.pause();
-      posts[index].classList.remove("is-playing");
-    }
-  });
-}
-
-function toggleAudio(index) {
-  setCurrent(index);
-  const audio = audios[index];
-  if (audio.paused) {
-    stopOthers(audio);
-    audio.play();
-  } else {
-    audio.pause();
-  }
-}
-
-posts.forEach((post, index) => {
-  buildWaveform(post, index);
-  const audio = audios[index];
-  const button = post.querySelector(".play-button");
+function bindPost(post, initialIndex) {
+  buildWaveform(post, initialIndex);
+  const audio = post.querySelector("audio");
   const currentTime = post.querySelector(".current-time");
   const bars = [...post.querySelectorAll(".waveform i")];
 
-  button.addEventListener("click", () => toggleAudio(index));
+  post.querySelector(".play-button").addEventListener("click", () => toggleAudio(posts.indexOf(post)));
   audio.addEventListener("play", () => {
-    setCurrent(index);
+    const activeIndex = posts.indexOf(post);
+    if (activeIndex < 0) return;
+    setCurrent(activeIndex);
     post.classList.add("is-playing");
   });
   audio.addEventListener("pause", () => post.classList.remove("is-playing"));
@@ -83,10 +117,11 @@ posts.forEach((post, index) => {
   });
   audio.addEventListener("ended", () => {
     post.classList.remove("is-playing");
-    if (autoplayFeed && index < posts.length - 1) {
+    const activeIndex = posts.indexOf(post);
+    if (autoplayFeed && activeIndex >= 0 && activeIndex < posts.length - 1) {
       setTimeout(() => {
-        setCurrent(index + 1, true);
-        audios[index + 1].play();
+        setCurrent(activeIndex + 1, true);
+        audios[activeIndex + 1].play();
       }, 650);
     } else {
       autoplayFeed = false;
@@ -98,26 +133,57 @@ posts.forEach((post, index) => {
   });
 
   post.querySelector(".share-button").addEventListener("click", async () => {
+    const activeIndex = posts.indexOf(post);
     const shareData = {
       title: "A human moment worth hearing",
       text: `${post.querySelector(".post-heading h2").textContent} - Human Conversation`,
-      url: `${window.location.href.split("#")[0]}#moment-${index + 1}`,
+      url: `${window.location.href.split("#")[0]}#moment-${activeIndex + 1}`,
     };
     try {
       if (navigator.share) {
         await navigator.share(shareData);
       } else {
         await navigator.clipboard.writeText(shareData.url);
-        toast.classList.add("is-visible");
-        setTimeout(() => toast.classList.remove("is-visible"), 1600);
+        showToast("Link copied");
       }
     } catch (error) {
       if (error.name !== "AbortError") console.error(error);
     }
   });
+
+  post.querySelector(".delete-button").addEventListener("click", () => {
+    if (!window.confirm("Remove this clip from your feed?")) return;
+    audio.pause();
+    const deletedMoments = getDeletedMoments();
+    deletedMoments.add(post.dataset.momentId);
+    saveDeletedMoments(deletedMoments);
+    post.classList.add("is-removing");
+    setTimeout(() => {
+      post.hidden = true;
+      post.classList.remove("is-removing");
+      syncPosts();
+      if (posts.length) {
+        setCurrent(currentIndex);
+      } else {
+        playFeedButton.disabled = true;
+        nextMomentButton.disabled = true;
+        outputText.textContent = "Your feed is clear.";
+      }
+      showToast("Clip removed");
+    }, 180);
+  });
+}
+
+const deletedMoments = getDeletedMoments();
+document.querySelectorAll(".feed-post").forEach((post) => {
+  if (deletedMoments.has(post.dataset.momentId)) post.hidden = true;
 });
+syncPosts();
+posts.forEach(bindPost);
+setCurrent(0);
 
 playFeedButton.addEventListener("click", () => {
+  if (!posts.length) return;
   autoplayFeed = true;
   setCurrent(0, true);
   audios[0].currentTime = 0;
@@ -142,7 +208,8 @@ const observer = new IntersectionObserver((entries) => {
     .filter((entry) => entry.isIntersecting)
     .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
   if (mostVisible && mostVisible.intersectionRatio > 0.55) {
-    setCurrent(Number(mostVisible.target.dataset.post));
+    const visibleIndex = posts.indexOf(mostVisible.target);
+    if (visibleIndex >= 0) setCurrent(visibleIndex);
   }
 }, { threshold: [0.55, 0.75] });
 posts.forEach((post) => observer.observe(post));
