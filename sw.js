@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "human-conversation-public-staging-";
-const CACHE_NAME = CACHE_PREFIX + "audio-feed-home-v2";
+const CACHE_NAME = CACHE_PREFIX + "audio-feed-home-v3";
 const LEGACY_CACHE_NAMES = ["human-conversation-public-indexhtmlmanifestwebmanifest"];
 const APP_SHELL = [
   "./.nojekyll",

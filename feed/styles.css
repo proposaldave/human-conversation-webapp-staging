@@ -87,14 +87,16 @@ svg {
   margin-bottom: 34px;
 }
 
+.intro-copy {
+  min-width: 0;
+}
+
 .eyebrow {
   margin: 0 0 10px;
   color: var(--red);
   font-size: 0.72rem;
   font-weight: 700;
 }
-
-.intro .eyebrow { position: absolute; transform: translateY(-48px); }
 
 h1, h2, p { letter-spacing: 0; }
 h1, .story-panel h2, dialog h2 {
