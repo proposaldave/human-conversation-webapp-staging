@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111827" />
+    <meta
+      name="description"
+      content="A private investor demo of the Human Conversation audio feed."
+    />
+    <title>Human Conversation | Audio Feed</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="https://humanconversation.com/" target="_blank" rel="noreferrer">
+        <img src="./assets/human-conversation-mark.png" alt="" />
+        <span>Human Conversation</span>
+      </a>
+      <span class="demo-label">Audio feed demo</span>
+      <button class="icon-button" id="infoButton" type="button" aria-label="About this demo" title="About this demo">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 11v6M12 7.5v.01"></path>
+        </svg>
+      </button>
+    </header>
+
+    <main class="page-shell">
+      <section class="intro" aria-labelledby="pageTitle">
+        <p class="eyebrow">REAL VOICES · REAL-WORLD COMMUNITY</p>
+        <h1 id="pageTitle">Hear what happened.</h1>
+        <button class="primary-button" id="playFeedButton" type="button">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"></path></svg>
+          Play the feed
+        </button>
+      </section>
+
+      <div class="experience-grid">
+        <section class="feed" id="feed" aria-label="Human moments feed">
+          <article class="feed-post is-active" data-post="0">
+            <div class="post-visual">
+              <img src="./assets/connection-leader.png" alt="A coach and players connecting on a pickleball court" />
+              <div class="visual-shade"></div>
+              <span class="post-number">01</span>
+              <div class="post-heading">
+                <p>CLASS PROMISE</p>
+                <h2>Why this skill matters.</h2>
+              </div>
+              <button class="play-button" type="button" aria-label="Play class promise">
+                <svg class="play-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"></path></svg>
+                <svg class="pause-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"></path></svg>
+              </button>
+            </div>
+            <div class="audio-panel">
+              <div class="post-meta">
+                <strong>Covering the Middle</strong>
+                <span>Real class · 0:31</span>
+              </div>
+              <div class="waveform" aria-hidden="true"></div>
+              <div class="time-row"><span class="current-time">0:00</span><span>0:31</span></div>
+              <audio preload="metadata" src="./assets/01-class-promise.mp3"></audio>
+              <div class="post-actions">
+                <button class="action-button keep-button" type="button" aria-label="Keep this moment" title="Keep this moment">
+                  <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.3A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"></path></svg>
+                </button>
+                <button class="action-button share-button" type="button" aria-label="Share this moment" title="Share this moment">
+                  <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 14-8-4 16-3-6-7-2Z"></path></svg>
+                </button>
+                <span class="permission"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5Z"></path></svg> Permissioned excerpt</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="feed-post" data-post="1">
+            <div class="post-visual post-visual-blue">
+              <div class="court-lines" aria-hidden="true"></div>
+              <span class="post-number">02</span>
+              <div class="post-heading">
+                <p>KEY TAKEAWAY</p>
+                <h2>One idea survives the class.</h2>
+              </div>
+              <button class="play-button" type="button" aria-label="Play key takeaway">
+                <svg class="play-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"></path></svg>
+                <svg class="pause-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"></path></svg>
+              </button>
+            </div>
+            <div class="audio-panel">
+              <div class="post-meta">
+                <strong>The one thing to remember</strong>
+                <span>Coach-marked · 0:45</span>
+              </div>
+              <div class="waveform" aria-hidden="true"></div>
+              <div class="time-row"><span class="current-time">0:00</span><span>0:45</span></div>
+              <audio preload="metadata" src="./assets/02-one-thing.mp3"></audio>
+              <div class="post-actions">
+                <button class="action-button keep-button" type="button" aria-label="Keep this moment" title="Keep this moment">
+                  <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.3A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"></path></svg>
+                </button>
+                <button class="action-button share-button" type="button" aria-label="Share this moment" title="Share this moment">
+                  <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 14-8-4 16-3-6-7-2Z"></path></svg>
+                </button>
+                <span class="permission"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5Z"></path></svg> Permissioned excerpt</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="feed-post" data-post="2">
+            <div class="post-visual post-visual-red">
+              <div class="connection-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+              <span class="post-number">03</span>
+              <div class="post-heading">
+                <p>HUMAN MOMENT</p>
+                <h2>The room opens up.</h2>
+              </div>
+              <button class="play-button" type="button" aria-label="Play human moment">
+                <svg class="play-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"></path></svg>
+                <svg class="pause-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"></path></svg>
+              </button>
+            </div>
+            <div class="audio-panel">
+              <div class="post-meta">
+                <strong>Teaching becomes memorable</strong>
+                <span>AI-selected · 0:27</span>
+              </div>
+              <div class="waveform" aria-hidden="true"></div>
+              <div class="time-row"><span class="current-time">0:00</span><span>0:27</span></div>
+              <audio preload="metadata" src="./assets/03-human-moment.mp3"></audio>
+              <div class="post-actions">
+                <button class="action-button keep-button" type="button" aria-label="Keep this moment" title="Keep this moment">
+                  <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.3A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"></path></svg>
+                </button>
+                <button class="action-button share-button" type="button" aria-label="Share this moment" title="Share this moment">
+                  <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 14-8-4 16-3-6-7-2Z"></path></svg>
+                </button>
+                <span class="permission"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5Z"></path></svg> Permissioned excerpt</span>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <aside class="story-panel">
+          <p class="eyebrow">ONE REAL CLASS</p>
+          <h2>The conversation becomes the product.</h2>
+          <ol class="story-steps">
+            <li class="is-current" data-jump="0"><span>1</span><strong>Hear</strong></li>
+            <li data-jump="1"><span>2</span><strong>Remember</strong></li>
+            <li data-jump="2"><span>3</span><strong>Share</strong></li>
+          </ol>
+          <div class="product-output">
+            <span>What this creates</span>
+            <strong id="outputText">A reason to join the class.</strong>
+          </div>
+          <button class="secondary-button" id="nextMomentButton" type="button">
+            Next moment
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg>
+          </button>
+        </aside>
+      </div>
+    </main>
+
+    <dialog id="aboutDialog">
+      <button class="dialog-close icon-button" type="button" aria-label="Close">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+      </button>
+      <img src="./assets/human-conversation-mark.png" alt="" />
+      <p class="eyebrow">THE PRODUCT WEDGE</p>
+      <h2>One class becomes a living piece of community memory.</h2>
+      <div class="trust-row"><span>Real voice</span><span>AI-selected</span><span>Human-approved</span></div>
+      <p class="dialog-note">No participant identity or full recording appears in this demo.</p>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">Link copied</div>
+    <script src="./app.js"></script>
+  </body>
+</html>
